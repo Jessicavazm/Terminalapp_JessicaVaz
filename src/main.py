@@ -10,7 +10,7 @@ def main():
     load_notes_json()
     while True:
         print(f"""
-            {Fore.YELLOW}Welcome to your very own{Fore.RESET}{Fore.MAGENTA} note-taking app!!{Fore.RESET}
+            {Fore.YELLOW}Welcome to your very own note-taking app!!{Fore.RESET}
             Every note is printed along an index number, date e time.
         
             {Fore.GREEN}1. Add a Note{Fore.RESET}
@@ -20,7 +20,7 @@ def main():
             {Fore.BLUE}5. Exit{Fore.RESET}
             """)
         try:
-            user_choice = input("Kindly, select a function (1-5) to proceed: ")
+            user_choice = input(f"{Fore.GREEN}Kindly, select a function (1-5) to proceed: {Fore.RESET}")
 
             if user_choice == "1":
                 add_note()
@@ -40,6 +40,8 @@ def main():
             break
         except Exception as e:
             print(f"{Fore.RED}Unexpected error occurred {e}{Fore.RESET}")
+
+save_notes_json()
 
 if __name__ == "__main__":
     main()
