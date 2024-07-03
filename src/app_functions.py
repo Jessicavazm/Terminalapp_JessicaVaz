@@ -1,15 +1,21 @@
+import datetime
+
 notes = []
 
 def add_note():
     global notes
     try: 
-        note = input("Type your note to be added to the note-taking app: ")
-        if not note.strip():
-            raise ValueError ("Nota cannot be empty, please type a text")
+        note_text = input("Type your note to be added to the note-taking app: ")
         
+        if not note_text.strip():
+            raise ValueError ("Note cannot be empty, please type a text")
+        
+        timestamp = datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
+        note = (note_text, timestamp)
         notes.append(note)
         print("Your note has been successfully added")
-
+        view_notes()
+    
     except ValueError as ve:
         print(f"Error: {ve}")
     except Exception as e:
@@ -23,7 +29,7 @@ def edit_note():
             i = int(input("Please, enter the note index you would like to edit: "))
             if i >= 1 and i <= len(notes):
                 new_note = input("Type your new note: ")
-                notes[i - 1] = new_note
+                notes[i - 1] = (new_note, datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S"))
                 print("Note has been successfully edited")
             else: 
                 print("Incorrect index, try again")
@@ -52,7 +58,7 @@ def view_notes():
     global notes
     if notes:
         print("List of notes: ")
-        for i,note in enumerate(notes, start=1):
-            print(f"{i}.{note}")
+        for i,(note_text, timestamp) in enumerate(notes, start=1):
+            print(f"{i}.{note_text} (Created at: {timestamp})")
     else:
         print("No notes to display.")

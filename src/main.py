@@ -1,9 +1,11 @@
 from app_functions import add_note, edit_note, remove_note, view_notes, notes
+import datetime
 
-def main_function():
+def main():
     while True:
         print("""
-            Welcome to your very own note-taking app
+            Welcome to your very own note-taking app!!
+            Every note is printed along an index number used to edit or delete notes.
         
             1. Add a Note
             2. Edit a Note
@@ -23,7 +25,7 @@ def main_function():
             elif user_choice == "4":
                 view_notes()
             elif user_choice == "5":
-                print("Exiting the program")
+                print("Exiting the program in 3,2,1...")
                 break
             else:
                 print("Invalid input, please choose an option from 1 to 5")
@@ -33,5 +35,5 @@ def main_function():
             print(f"Unexpected error occurred {e}")
 
 if __name__ == "__main__":
-    main_function()
-main_function()
+    main()
+
