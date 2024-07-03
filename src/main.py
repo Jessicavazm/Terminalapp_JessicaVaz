@@ -1,10 +1,12 @@
 from app_functions import add_note, edit_note, remove_note, view_notes, notes
 import datetime
+BLUE = "\033[34m"
+RESET = "\033[0m"
 
 def main():
     while True:
-        print("""
-            Welcome to your very own note-taking app!!
+        print(f"""
+            {BLUE}Welcome to your very own note-taking app!!{RESET}
             Every note is printed along an index number used to edit or delete notes.
         
             1. Add a Note
