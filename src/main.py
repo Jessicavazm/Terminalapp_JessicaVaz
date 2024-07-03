@@ -1,26 +1,26 @@
-from app_functions import load_notes,save_notes_json,add_note, edit_note, remove_note, view_notes, notes
+from app_functions import load_notes_json,save_notes_json,add_note, edit_note, remove_note, view_notes, notes
+from colorama import init, Fore
 import datetime
 import json
 import os 
 
-BLUE = "\033[34m"
-RESET = "\033[0m"
+init(autoreset=True)
 
 def main():
-    load_notes()
+    load_notes_json()
     while True:
         print(f"""
-            {BLUE}Welcome to your very own note-taking app!!{RESET}
+            {Fore.YELLOW}Welcome to your very own{Fore.RESET}{Fore.MAGENTA} note-taking app!!{Fore.RESET}
             Every note is printed along an index number, date e time.
         
-            1. Add a Note
-            2. Edit a Note
-            3. Remove a Note
-            4. View Notes
-            5. Exit
+            {Fore.GREEN}1. Add a Note{Fore.RESET}
+            {Fore.RED}2. Edit a Note{Fore.RESET}
+            {Fore.CYAN}3. Remove a Note{Fore.RESET}
+            {Fore.MAGENTA}4. View Notes{Fore.RESET}
+            {Fore.BLUE}5. Exit{Fore.RESET}
             """)
         try:
-            user_choice = input("Kindly select a number (1-5) to proceed: ")
+            user_choice = input("Kindly, select a function (1-5) to proceed: ")
 
             if user_choice == "1":
                 add_note()
@@ -34,11 +34,12 @@ def main():
                 print("Exiting the program in 3,2,1...")
                 break
             else:
-                print("Invalid input, please choose an option from 1 to 5")
+                print(f"{Fore.GREEN}Invalid number, please choose an option from 1 to 5: {Fore.RESET}")
         except KeyboardInterrupt:
-            print("Program interrupted by user, exiting in 3,2,1..")
+            print(f"{Fore.RED}\nProgram interrupted by user, exiting in 3, 2, 1..{Fore.RESET}")
+            break
         except Exception as e:
-            print(f"Unexpected error occurred {e}")
+            print(f"{Fore.RED}Unexpected error occurred {e}{Fore.RESET}")
 
 if __name__ == "__main__":
     main()

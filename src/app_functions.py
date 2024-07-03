@@ -8,7 +8,7 @@ def save_notes_json(filename = "notes.json"):
     with open(filename, "w") as file:
         json.dump(notes, file)
 
-def load_notes(filename = "notes.json"):
+def load_notes_json(filename = "notes.json"):
     global notes
     if os.path.exists(filename):
         with open (filename, "r") as file:
@@ -18,17 +18,14 @@ def add_note():
     global notes
     try: 
         note_text = input("Type your note to be added to the note-taking app: ")
-        
         if not note_text.strip():
             raise ValueError ("Note cannot be empty, please type a text")
-        
         timestamp = datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
         note = (note_text, timestamp)
         notes.append(note)
         print("Your note has been successfully added")
         save_notes_json()
         view_notes()
-    
     except ValueError as ve:
         print(f"Error: {ve}")
     except Exception as e:
