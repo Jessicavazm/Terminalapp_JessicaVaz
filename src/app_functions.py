@@ -1,6 +1,18 @@
 import datetime
+import json
+import os
 
 notes = []
+
+def save_notes_json(filename = "notes.json"):
+    with open(filename, "w") as file:
+        json.dump(notes, file)
+
+def load_notes(filename = "notes.json"):
+    global notes
+    if os.path.exists(filename):
+        with open (filename, "r") as file:
+            notes = json.load(file)
 
 def add_note():
     global notes
@@ -14,6 +26,7 @@ def add_note():
         note = (note_text, timestamp)
         notes.append(note)
         print("Your note has been successfully added")
+        save_notes_json()
         view_notes()
     
     except ValueError as ve:
@@ -31,6 +44,7 @@ def edit_note():
                 new_note = input("Type your new note: ")
                 notes[i - 1] = (new_note, datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S"))
                 print("Note has been successfully edited")
+                save_notes_json()
             else: 
                 print("Incorrect index, try again")
         except ValueError:
@@ -47,6 +61,7 @@ def remove_note():
             if i >= 1 and i <= len(notes):
                 notes.pop(i - 1)
                 print("Note removed successfully")
+                save_notes_json()
             else:
                 print("An error occurred, try again")
         except ValueError:

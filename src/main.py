@@ -1,13 +1,17 @@
-from app_functions import add_note, edit_note, remove_note, view_notes, notes
+from app_functions import load_notes,save_notes_json,add_note, edit_note, remove_note, view_notes, notes
 import datetime
+import json
+import os 
+
 BLUE = "\033[34m"
 RESET = "\033[0m"
 
 def main():
+    load_notes()
     while True:
         print(f"""
             {BLUE}Welcome to your very own note-taking app!!{RESET}
-            Every note is printed along an index number used to edit or delete notes.
+            Every note is printed along an index number, date e time.
         
             1. Add a Note
             2. Edit a Note
