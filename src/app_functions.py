@@ -1,4 +1,4 @@
-from colorama import init, Fore
+from colorama import Fore, Back, Style, init
 import datetime
 import json
 import os
@@ -73,7 +73,7 @@ def remove_note():
 def view_notes():
     global notes
     if notes:
-        print(Fore.YELLOW+ "List of notes:")
+        print(Back.YELLOW + Fore.RED + "List of notes:" + Style.RESET_ALL)
         for i,(note_text, timestamp) in enumerate(notes, start=1):
             print(f"{i}. {Fore.BLUE}{note_text} (Created at: {timestamp})")
     else:
