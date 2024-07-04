@@ -2,14 +2,14 @@
 import app_functions as af
 # Import colorama for text colour, datetime for displaying date and time for each note, json and os for file handling.
 from colorama import Fore, Back, Style, init
-import datetime
+import datetime 
 import json
 import os 
 
 # Initializes and automatically resets text colours
 init(autoreset=True)
 
-# Main function displays initial message and function menu. Main function calls functions from app_functions to create and run the app. While loop keeps displaying menu until user decides to exit program, if/elif/else statements controls the flow of the program and try/except handles errors during the execution of the program and avoids program from breaking down.
+# Main function displays initial message and function menu. Main function calls functions from app_functions to create and run the app. While loop keeps displaying menu until user decides to exit program, if/elif/else statements controls the flow of the program and try/except handles errors during the execution of the program and avoids program from breaking down. 
 def main():
     af.load_notes_json()
     while True:
@@ -44,8 +44,9 @@ def main():
             break
         except Exception as e:
             print(f"{Fore.RED}An unexpected error occurred: {e}")
-    af.save_notes_json()
-
+        finally:
+            af.save_notes_json()
+            
 # This runs the 'main' function if the name of the script is main.py
 if __name__ == "__main__":
     main()

@@ -18,7 +18,7 @@ def save_notes_json(filename="notes.json"):
         with open(filename, "w") as file:
             json.dump(notes, file)
     except Exception as e:
-        print(f"{Fore.RED} An unexpected error occurred: {e}")
+        print(f"{Fore.RED}An unexpected error occurred: {e}{Fore.RESET}")
 
 # 'If' and 'os' checks if file exists and loads user's notes from json file.
 def load_notes_json(filename="notes.json"):
