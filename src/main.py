@@ -34,12 +34,12 @@ def main():
                 print("Exiting the program in 3,2,1...")
                 break
             else:
-                print(f"{Fore.GREEN}Invalid number, please choose an option from 1 to 5: {Fore.RESET}")
+                print(f"{Fore.RED}Invalid number, please choose an option from 1 to 5: {Fore.RESET}")
         except KeyboardInterrupt:
-            print(f"{Fore.RED}\nProgram interrupted by user, exiting in 3, 2, 1..{Fore.RESET}")
+            print(f"{Fore.RED}\nProgram interrupted by user, exiting in 3, 2, 1...{Fore.RESET}")
             break
         except Exception as e:
-            print(f"{Fore.RED}Unexpected error occurred {e}{Fore.RESET}")
+            print(f"{Fore.RED}Unexpected error occurred: {e}.{Fore.RESET}")
 
 save_notes_json()
 
