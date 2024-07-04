@@ -36,8 +36,9 @@ def load_notes_json(filename="notes.json"):
 # Function asks for user notes(input) and adds notes to json file. 
 def add_note():
     global notes
+    initial_count = len(notes)
     try:
-        print(f"{Fore.GREEN}Please, start typing your notes. Enter each note on a new line. Type 'done' on a new line to finish:")
+        print(f"{Fore.GREEN}Please, start typing your notes. Enter each note on a new line. Type 'done' on a new line to finish adding notes:")
         timestamp = datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
         while True:
             note_text = input()
@@ -47,11 +48,14 @@ def add_note():
                 print(f"{Fore.YELLOW}Note cannot be empty. Enter your note or type 'done' to finish.")
                 continue
             notes.append((note_text.strip(), timestamp))
-        if len(notes) == 0:
+        if len(notes) > initial_count:
+            print(f"{Fore.GREEN}Notes have been added successfully.")
+            save_notes_json()
+            view_notes()
+        elif len(notes) == 0:
             raise ValueError(f"{Fore.RED}Please add at least one note.")
-        print(f"{Fore.GREEN}Notes have been added successfully.")
-        save_notes_json()
-        view_notes()
+        else:
+            print(f"{Fore.YELLOW}No notes were added.")
     except ValueError as ve:
         print(f"{Fore.RED}Error: {ve}")
     except Exception as e:
