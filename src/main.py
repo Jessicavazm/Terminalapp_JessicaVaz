@@ -15,7 +15,7 @@ def main():
     while True:
         print(f"""
             {Back.YELLOW + Fore.RED}Welcome to your very own note-taking app!!{Style.RESET_ALL}
-            {Fore.WHITE}Every note is printed along an index number, date e time.
+            {Fore.WHITE}Every note is printed along an index number, date and time.
         
             {Fore.GREEN}Option 1. Add a Note
             {Fore.RED}Option 2. Edit a Note
@@ -45,9 +45,8 @@ def main():
         except Exception as e:
             print(f"{Fore.RED}An unexpected error occurred: {e}")
         finally:
-            af.save_notes_json()
+            print (f"{Fore.MAGENTA}Thank you for visiting my app!!")
             
 # This runs the 'main' function if the name of the script is main.py
 if __name__ == "__main__":
     main()
-

@@ -17,8 +17,9 @@ def save_notes_json(filename="notes.json"):
     try:
         with open(filename, "w") as file:
             json.dump(notes, file)
+            print(f"Notes have been saved to file {filename}")
     except Exception as e:
-        print(f"{Fore.RED}An unexpected error occurred: {e}{Fore.RESET}")
+        print(f"{Fore.RED}An unexpected error occurred: {e}")
 
 # 'If' and 'os' checks if file exists and loads user's notes from json file.
 def load_notes_json(filename="notes.json"):
@@ -36,7 +37,7 @@ def load_notes_json(filename="notes.json"):
 def add_note():
     global notes
     try:
-        print(f"{Fore.GREEN}Type your notes. Enter each note on a new line. Type 'done' on a new line to finish:")
+        print(f"{Fore.GREEN}Please, start typing your notes. Enter each note on a new line. Type 'done' on a new line to finish:")
         timestamp = datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
         while True:
             note_text = input()
@@ -71,8 +72,7 @@ def edit_note():
             else: 
                 print(f"{Fore.RED}Incorrect index. Please try again.")
         except ValueError:
-            print(f"{Fore.RED}Please, type a valid number from (1-{len(notes)}).")
-            
+            print(f"{Fore.RED}Please, type a valid number from (1-{len(notes)}).")    
         except Exception as e:
             print(f"{Fore.RED}An unexpected error occurred: {e}")
     else:
@@ -105,7 +105,7 @@ def view_notes():
         if notes:
             print(Back.YELLOW + Fore.RED + "List of notes:" + Style.RESET_ALL)
             for i,(note_text, timestamp) in enumerate(notes, start=1):
-                print(f"{i}. {Fore.BLUE}{note_text} (Created at: {timestamp})")
+                print(f"{i}. {note_text} (Created at: {timestamp})")
         else:
             print(f"{Fore.YELLOW}You don't have any notes to view, try adding a note first.")
     except Exception as e:
