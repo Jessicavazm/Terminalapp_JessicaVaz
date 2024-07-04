@@ -3,24 +3,24 @@ from colorama import Fore, Back, Style, init
 import datetime
 import json
 import os 
-
+2
 init(autoreset=True)
 
 def main():
     load_notes_json()
     while True:
         print(f"""
-            {Fore.YELLOW}Welcome to your very own note-taking app!!{Fore.RESET}
+            {Fore.BLUE}Welcome to your very own note-taking app!!{Fore.RESET}
             Every note is printed along an index number, date e time.
         
-            {Fore.GREEN}1. Add a Note{Fore.RESET}
-            {Fore.RED}2. Edit a Note{Fore.RESET}
-            {Fore.CYAN}3. Remove a Note{Fore.RESET}
-            {Fore.MAGENTA}4. View Notes{Fore.RESET}
-            {Fore.BLUE}5. Exit{Fore.RESET}
+            {Fore.GREEN}Option 1. Add a Note{Fore.RESET}
+            {Fore.RED}Option 2. Edit a Note{Fore.RESET}
+            {Fore.CYAN}Option 3. Remove a Note{Fore.RESET}
+            {Fore.MAGENTA}Option 4. View Notes{Fore.RESET}
+            {Fore.BLUE}Option 5. Exit{Fore.RESET}
             """)
         try:
-            user_choice = input(f"{Fore.GREEN}Kindly, select a function (1-5) to proceed: {Fore.RESET}")
+            user_choice = input(f"{Fore.GREEN}Please choose a function by entering a number from 1 to 5: {Fore.RESET}")
 
             if user_choice == "1":
                 add_note()
@@ -31,7 +31,7 @@ def main():
             elif user_choice == "4":
                 view_notes()
             elif user_choice == "5":
-                print("Exiting the program in 3,2,1...")
+                print("Exiting the program in 3,2,1...Bye")
                 break
             else:
                 print(f"{Fore.RED}Invalid number, please choose an option from 1 to 5: {Fore.RESET}")
@@ -39,7 +39,7 @@ def main():
             print(f"{Fore.RED}\nProgram interrupted by user, exiting in 3, 2, 1...{Fore.RESET}")
             break
         except Exception as e:
-            print(f"{Fore.RED}Unexpected error occurred: {e}.{Fore.RESET}")
+            print(f"{Fore.RED}An unexpected error occurred: {e}.{Fore.RESET}")
 
 save_notes_json()
 
