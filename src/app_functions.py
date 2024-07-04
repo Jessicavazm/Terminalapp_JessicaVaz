@@ -17,7 +17,7 @@ def save_notes_json(filename="notes.json"):
     try:
         with open(filename, "w") as file:
             json.dump(notes, file)
-            print(f"Notes have been saved to file {filename}")
+            print(f"{Fore.GREEN}Changes have been saved to file {filename}")
     except Exception as e:
         print(f"{Fore.RED}An unexpected error occurred: {e}")
 
@@ -97,6 +97,19 @@ def remove_note():
             print(f"{Fore.RED}An unexpected error occurred: {e}")       
     else:
         print(f"{Fore.YELLOW}You don't have any notes to delete, try adding a note first.")
+
+
+def clear_notes():
+    global notes
+    if notes:
+        try:
+            notes.clear()
+            print(f"{Fore.GREEN}All notes have been cleared.")
+            save_notes_json()
+        except Exception as e:
+            print(f"{Fore.RED}An unexpected error occurred: {e}")
+    else:
+        print(f"{Fore.YELLOW}You don't have any notes to clear, try adding a note first.")
 
 # Function allows users to view notes if any and prompts user to add notes if they haven't added any note. Error handling catches any possible errors.
 def view_notes():
