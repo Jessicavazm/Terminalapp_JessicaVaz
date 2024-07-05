@@ -1,17 +1,17 @@
-# Importing app_function module to use functions
+# Import colorama for text colour
+from colorama import Fore, Back, Style, init 
+
+# Import app_function and file_operations modules to use functions
 import app_functions as af
-# Import colorama for text colour, datetime for displaying date and time for each note, json and os for file handling.
-from colorama import Fore, Back, Style, init
-import datetime 
-import json
-import os 
+import file_operations as fo
 
 # Initializes and automatically resets text colours
 init(autoreset=True)
 
 # Main function displays initial message and function menu. Main function calls functions from app_functions to create and run the app. While loop keeps displaying menu until user decides to exit program, if/elif/else statements controls the flow of the program and try/except handles errors during the execution of the program and avoids program from breaking down. 
 def main():
-    af.load_notes_json()
+    fo.load_notes_json()
+    
     while True:
         print(f"""
             {Back.YELLOW + Fore.RED}Welcome to your very own note-taking app!!{Style.RESET_ALL}
@@ -20,10 +20,11 @@ def main():
             {Fore.GREEN}Option 1. Add a Note
             {Fore.RED}Option 2. Edit a Note
             {Fore.CYAN}Option 3. Remove a Note
-            {Fore.MAGENTA}Option 4. Clear App
+            {Fore.MAGENTA}Option 4. Remove all notes
             {Fore.YELLOW}Option 5. View Notes
             {Fore.BLUE}Option 6. Exit
             """)
+        
         try:
             user_choice = input("Please choose a function by entering a number from 1 to 6: ")
 
@@ -42,11 +43,14 @@ def main():
                 break
             else:
                 print(f"{Fore.RED}Invalid entry, please choose an option from 1 to 5: ")
+
         except KeyboardInterrupt:
             print(f"{Fore.RED}\nProgram interrupted by user, exiting in 3, 2, 1...")
             break
+
         except Exception as e:
             print(f"{Fore.RED}An unexpected error occurred: {e}")
+
         finally:
             print (f"{Fore.MAGENTA}Thank you for visiting my app.")
             
