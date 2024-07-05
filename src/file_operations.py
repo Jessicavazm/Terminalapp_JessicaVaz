@@ -9,7 +9,7 @@ def save_notes_json(notes, filename="notes.json"):
     try:
         with open(filename, "w") as file:
             json.dump(notes, file)
-            print(f"{Fore.GREEN}Changes have been saved to file. {filename}")
+            print(f"{Fore.GREEN}Changes are being made to {filename}..")
     
     except Exception as e:
         print(f"{Fore.RED}An unexpected error occurred: {e}")

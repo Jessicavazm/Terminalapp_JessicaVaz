@@ -6,7 +6,6 @@
 ## Dependencies
 Dependencies used to run the application includes:
 - Colorama = 0.4.6
-- Pytest
 
 ## How you can use the app, list of features
 In this part, I will detail how to use the app, and describe features of the `note-taking` app.

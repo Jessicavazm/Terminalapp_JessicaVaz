@@ -19,12 +19,14 @@ def add_note():
     initial_count = len(notes)
     
     try:
-        print(f"{Fore.GREEN}Please, start typing your notes. Enter each note on a new line. Type 'done' on a new line to finish adding notes:")
+        print(f"{Fore.GREEN}Please, start typing your notes. Enter each note on a new line. Type 'done' on a new line to finish adding notes or type 'exit' to go back to main function: ")
         timestamp = datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
         
         while True:
             note_text = input()
             if note_text.lower().strip() == 'done':
+                break
+            elif note_text.lower().strip() == "exit":
                 break
             if not note_text.strip():
                 print(f"{Fore.YELLOW}Note cannot be empty. Enter your note or type 'done' to go back to main menu.")
@@ -53,15 +55,23 @@ def edit_note():
     
     if notes:
         view_notes()
+
         try:
-            i = int(input("Please, enter the note index you would like to edit: "))
-            if i >= 1 and i <= len(notes):
-                new_note = input("Type your new note: ")
-                notes[i - 1] = (new_note, datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S"))
-                print(f"{Fore.GREEN}Note has been successfully edited.")
-                fo.save_notes_json(notes)
-            else: 
-                print(f"{Fore.RED}Incorrect index. Please try again.")
+            i = input("Please, type the note index you would like to edit or type 'exit' to exit: ")
+            
+            while True:
+                if i == "exit":
+                    break
+                i = int(i)
+                if i >= 1 and i <= len(notes):
+                    new_note = input("Type your new note and press enter: ")
+                    notes[i - 1] = (new_note, datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S"))
+                    print(f"{Fore.GREEN}Note has been successfully edited.")
+                    fo.save_notes_json(notes)
+                    break 
+                else:
+                    print(f"{Fore.RED}Incorrect index. Please try again.")
+                    return edit_note()
         
         except ValueError:
             print(f"{Fore.RED}Please, type a valid number from (1-{len(notes)}).")    
@@ -77,22 +87,30 @@ def remove_note():
     
     if notes:
         view_notes()
+
         try:
-            i = int(input("Please, enter the note index you would like to remove: "))
-            if i >= 1 and i <= len(notes):
-                notes.pop(i - 1)
-                print(f"{Fore.GREEN}Note removed successfully.")
-                fo.save_notes_json(notes)
-            else:
-                print(f"{Fore.RED}Incorrect index. Please try again.")
+            i = input("Please, type the note index you would like to remove or type 'exit' to exit: ")
+            
+            while True:
+                if i == "exit":
+                    break
+                i = int(i)
+                if i >= 1 and i <= len(notes):
+                    notes.pop(i - 1)
+                    print(f"{Fore.GREEN}Note has been successfully removed.")
+                    fo.save_notes_json(notes)
+                    break
+                else:
+                    print(f"{Fore.RED}Incorrect index. Please try again.")
+                    return remove_note()
         
         except ValueError:
-            print(f"{Fore.RED}Please, type a valid number from (1-{len(notes)}).")
+            print(f"{Fore.RED}Please, type a valid number from (1-{len(notes)}).")    
         
         except Exception as e:
-            print(f"{Fore.RED}An unexpected error occurred: {e}")       
+            print(f"{Fore.RED}An unexpected error occurred: {e}")
     else:
-        print(f"{Fore.YELLOW}You don't have any notes to delete, try adding a note first.")
+        print(f"{Fore.YELLOW}You don't have any notes to remove, try adding a note first.")
 
 
 def clear_notes():
@@ -116,8 +134,8 @@ def view_notes():
     try:
         if notes:
             print(Back.YELLOW + Fore.RED + "List of notes:" + Style.RESET_ALL)
-            for i,(note_text, timestamp) in enumerate(notes, start=1):
-                print(f"{i}. {note_text} (Created at: {timestamp})")
+            for i,(note_text, timestamp) in enumerate(notes,start=1):
+                print(f"{Fore.YELLOW}{i}{Fore.RESET}. {note_text} (Created at: {timestamp})")
         else:
             print(f"{Fore.YELLOW}You don't have any notes to view, try adding a note first.")
     

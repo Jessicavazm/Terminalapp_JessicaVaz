@@ -20,7 +20,7 @@ def main():
             {Fore.GREEN}Option 1. Add a Note
             {Fore.RED}Option 2. Edit a Note
             {Fore.CYAN}Option 3. Remove a Note
-            {Fore.MAGENTA}Option 4. Remove all notes
+            {Fore.MAGENTA}Option 4. Remove all Notes
             {Fore.YELLOW}Option 5. View Notes
             {Fore.BLUE}Option 6. Exit
             """)
@@ -42,7 +42,7 @@ def main():
                 print(f"{Fore.CYAN}Exiting the program in 3,2,1...Bye")
                 break
             else:
-                print(f"{Fore.RED}Invalid entry, please choose an option from 1 to 5: ")
+                print(f"{Fore.RED}Invalid entry, please choose an option from 1 to 6: ")
 
         except KeyboardInterrupt:
             print(f"{Fore.RED}\nProgram interrupted by user, exiting in 3, 2, 1...")
@@ -52,7 +52,7 @@ def main():
             print(f"{Fore.RED}An unexpected error occurred: {e}")
 
         finally:
-            print (f"{Fore.MAGENTA}Thank you for visiting my app.")
+            print(f"{Fore.MAGENTA}Thank you for visiting my app.")
             
 # This runs the 'main' function if the name of the script is main.py
 if __name__ == "__main__":
