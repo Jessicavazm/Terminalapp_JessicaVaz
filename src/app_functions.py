@@ -21,20 +21,20 @@ def add_note():
     try:
         print(f"{Fore.GREEN}Enter each note on a new line. Type 'done' to finish or 'exit' to cancel: ")
         timestamp = datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
-        # Input is stored in variable called 'note_text'. 'If' condition checks if 'note_text' value is equal to 'done' or 'exit' which ends the loop. 'If not' checks if note is empty and if it evaluates to true it prompts user to type something or type 'exit' to go back to main menu. 'Else' is only executed if the above are not true, it adds notes to note app with timestamp.
+        # Input is stored in variable called 'i'. 'If' condition checks if 'i' value is equal to 'done' or 'exit' which ends the loop. 'If not' checks if note is empty and if it evaluates to true it prompts user to type something or type 'exit' to go back to main menu. 'Else' is only executed if the above are not true, it adds notes to note app with timestamp.
         while True:
-            note_text = input()
-            if note_text.lower().strip() in ['done', 'exit']:
+            i = input()
+            if i.lower().strip() in ['done', 'exit']:
                 break
-            if not note_text.strip():
-                print(f"{Fore.YELLOW}Note cannot be empty. Enter each note on a new line. Type 'done' to finish or 'exit' to cancel: ")
+            if not i.strip():
+                print(f"{Fore.YELLOW}Note cannot be empty. Enter content for the note. Type 'done' to finish or 'exit' to cancel: ")
                 continue
             else:
-                notes.append((note_text.strip(), timestamp))
+                notes.append((i.strip(), timestamp))
         # 'If' checks if new notes were added, if so it prints a confirmation message, save and displays notes. 'Else' is executed if no notes were added to app.
         if len(notes) > initial_count:
-            print(f"{Fore.GREEN}Notes have been added successfully.")
             fo.save_notes_json(notes)
+            print(f"{Fore.GREEN}Notes have been added successfully.")
             view_notes()
         else:
             print(f"{Fore.YELLOW}No notes were added.")
@@ -56,32 +56,38 @@ def edit_note():
     # Function 'view_'notes is called displaying all saved notes.
     view_notes()
     # Loop 'while True' runs until user types a valid input or chooses to exit program.
-    try:
-        while True:
-            i = input(f"Please, type the note index you would like to edit or type 'exit' to cancel: ").strip()
-            if i.lower() == "exit":
-                break
-            # User input is converted to int. 'If' checks if input is within the range. If condition evaluates to true, it proceeds to ask user to type new note content which is stored in variable new_note. 'If new_note' updates the note with timestamp and displays a confirmation message. Function 'save_notes_json' updates json file and 'view_notes' displays updated notes to user. 'ValueError' catches wrong input values and 'Exception' catches any other possible error that might occur.
-            try:
-                timestamp = datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
-                i = int(i)
-                if 1 <= i <= len(notes):
-                    new_note = input("Type your new note and press enter to save: ").strip()
-                    if new_note:
-                        notes[i - 1] = (new_note.strip(), timestamp)
-                        print(f"{Fore.GREEN}Note has been successfully edited.")
-                        fo.save_notes_json(notes)
-                        view_notes()
-                    else:
-                        print(f"{Fore.RED}Note cannot be empty.")
-                    break
-                else:
-                    print(f"{Fore.RED}Incorrect index. Please try again.")
-            except ValueError:
-                print(f"{Fore.RED}Invalid input, type a valid number from (1-{len(notes)}).")
     
-    except Exception as e:
-        print(f"{Fore.RED}An unexpected error occurred: {e}")
+    while True:
+        i = input(f"{Fore.GREEN}Please, type the note index you would like to edit or type 'exit' to cancel: ").strip()
+        if i.lower() == "exit":
+            break
+
+        # User input is converted to int. 'If' checks if input is within the range. If condition evaluates to true, it proceeds to ask user to type new note content which is stored in variable new_note. 'If new_note' updates the note with timestamp and displays a confirmation message. Function 'save_notes_json' updates json file and 'view_notes' displays updated notes to user. 'Else' keeps the loops running and prompts user to type a non empty note. 'ValueError' catches wrong input values and 'Exception' catches any other possible error that might occur.
+        try:
+            timestamp = datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
+            i = int(i)
+            if 1 <= i <= len(notes):
+                new_note = input(f"{Fore.GREEN}Type your new note and press enter to save: ").strip()
+                if new_note:
+                    notes[i - 1] = (new_note.strip(), timestamp)
+                    fo.save_notes_json(notes)
+                    print(f"{Fore.GREEN}Note has been successfully edited.")
+                    fo.save_notes_json(notes)
+                    view_notes()
+                    break
+
+                else:
+                    print(f"{Fore.YELLOW}Note cannot be empty. Please enter content for the note when selecting an index to edit.")
+                    continue
+                    
+            else:
+                print(f"{Fore.RED}Incorrect index. Please try again.")
+        except ValueError:
+                print(f"{Fore.RED}Invalid input, type a valid number from (1-{len(notes)}).")
+
+        except Exception as e:
+            print(f"{Fore.RED}An unexpected error occurred: {e}")
+    
 
 
 # Function 'remove_note' allows users to delete a specific note using it's index number. First, saved notes are stored in variable called 'notes'. 'If not' condition checks if note app is empty, if it evaluates to true, it prompts the user to add a note first. 'Return' ends the function since note app is empty and it can't proceed to remove a note.
@@ -96,19 +102,19 @@ def remove_note():
     # Loop 'while True' keeps running until user's input is valid or user decides to exit. User input is converted to 'int' and input is within the range, 'pop' function deletes note and prints a confirmation message. Function 'save_notes' makes new changes to json file and function view_notes displays updated note list. 'Else' statement is executed if user input is out of the valid range. 'ValueErrors' catches wrong input values and 'Exception' catches any other possible error that might occur in the process.
     try:
         while True:
-            i = input("Please, type the note index you would like to remove or type 'exit' to cancel: ").strip()
+            i = input(f"{Fore.GREEN}Please, type the note index you would like to remove or type 'exit' to cancel: ").strip()
             if i.lower() == "exit":
                 break
             try:
                 i = int(i)
                 if 1 <= i <= len(notes):
                     notes.pop(i - 1)
-                    print(f"{Fore.GREEN}Note has been successfully removed.")
                     fo.save_notes_json(notes)
+                    print(f"{Fore.GREEN}Note has been successfully removed.")
                     view_notes()
                     break
                 else:
-                    print(f"{Fore.RED}Incorrect index. Please try again.")
+                    print(f"{Fore.RED}Incorrect index, please double check index next to note.")
             except ValueError:
                 print(f"{Fore.RED}Invalid input, type a valid number from (1-{len(notes)}).")
     
@@ -126,8 +132,8 @@ def clear_notes():
 
     try:
         notes.clear()
-        print(f"{Fore.GREEN}All notes have been cleared.")
         fo.save_notes_json(notes)
+        print(f"{Fore.GREEN}All notes have been cleared.")
         
     except Exception as e:
         print(f"{Fore.RED}An unexpected error occurred: {e}")

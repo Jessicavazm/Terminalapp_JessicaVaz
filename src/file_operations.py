@@ -40,6 +40,9 @@ def load_notes_json(filename="notes.json"):
         except json.JSONDecodeError as de:
             print(f"{Fore.RED}JSONDecodeError: {de}")
 
+        except IOError as ie:
+            print(f"{Fore.RED}IOError: {ie}")
+
         except Exception as e:
             print(f"{Fore.RED}An unexpected error occurred: {e}")
     else:
