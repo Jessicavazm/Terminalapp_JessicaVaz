@@ -1,17 +1,18 @@
-# Import colorama for text colour
+# Import Colorama package to use colours in printing.
 from colorama import Fore, Back, Style, init 
 
-# Import app_function and file_operations modules to use functions
+# Import app_function and file_operations modules to use functions.
 import app_functions as af
 import file_operations as fo
 
-# Initializes and automatically resets text colours
+# Initializes and automatically resets text colours.
 init(autoreset=True)
 
-# Main function displays initial message and function menu. Main function calls functions from app_functions to create and run the app. While loop keeps displaying menu until user decides to exit program, if/elif/else statements controls the flow of the program and try/except handles errors during the execution of the program and avoids program from breaking down. 
+# Main function displays main menu options and asks for user's input.
 def main():
+    # Loads existing notes
     fo.load_notes_json()
-    
+    # 'While True' runs main menu until user types a valid input or chooses to exit. Fore.Colour add a different colour to each menu option.
     while True:
         print(f"""
             {Back.YELLOW + Fore.RED}Welcome to your very own note-taking app!!{Style.RESET_ALL}
@@ -24,10 +25,10 @@ def main():
             {Fore.YELLOW}Option 5. View Notes
             {Fore.BLUE}Option 6. Exit
             """)
-        
+        # Each option calls a specific function. If/elif determines the program's flow. User input is stored in 'user_choice' variable and then matched to different functions.
         try:
             user_choice = input("Please choose a function by entering a number from 1 to 6: ")
-
+        
             if user_choice == "1":
                 af.add_note()
             elif user_choice == "2":
@@ -39,21 +40,21 @@ def main():
             elif user_choice == "5":
                 af.view_notes()
             elif user_choice == "6":
-                print(f"{Fore.CYAN}Exiting the program in 3,2,1...Bye")
+                print(f"{Fore.CYAN}Thank you for visiting my app. Exiting the program in 3,2,1...Bye")
                 break
             else:
                 print(f"{Fore.RED}Invalid entry, please choose an option from 1 to 6: ")
-
+        # Except handles KeyBoardInterrupt.
         except KeyboardInterrupt:
             print(f"{Fore.RED}\nProgram interrupted by user, exiting in 3, 2, 1...")
             break
-
+        # Exception handles any errors that might occur while program's execution.
         except Exception as e:
             print(f"{Fore.RED}An unexpected error occurred: {e}")
-
+        # Finally informs users added notes are always saved.
         finally:
             print(f"{Fore.MAGENTA}If you have added any notes, they will be saved for the next time.")
             
-# This runs the 'main' function if the name of the script is main.py
+# Checks if this script runs as the main function, if it evaluates to true, it allows to call the function by calling main().
 if __name__ == "__main__":
     main()
