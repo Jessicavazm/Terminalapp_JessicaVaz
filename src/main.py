@@ -52,7 +52,7 @@ def main():
             print(f"{Fore.RED}An unexpected error occurred: {e}")
 
         finally:
-            print(f"{Fore.MAGENTA}Thank you for visiting my app.")
+            print(f"{Fore.MAGENTA}If you have added any notes, they will be saved for the next time.")
             
 # This runs the 'main' function if the name of the script is main.py
 if __name__ == "__main__":
