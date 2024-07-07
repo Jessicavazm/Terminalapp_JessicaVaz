@@ -3,15 +3,13 @@ from colorama import Fore, Back, Style, init
 
 # Import app_function and file_operations modules to use functions.
 import app_functions as af
-import file_operations as fo
 
 # Initializes and automatically resets text colours.
 init(autoreset=True)
 
 # Main function displays main menu options and asks for user's input.
 def main():
-    # Loads existing notes
-    fo.load_notes_json()
+    
     # 'While True' runs main menu until user types a valid input or chooses to exit. Fore.Colour add a different colour to each menu option.
     while True:
         print(f"""
@@ -43,7 +41,8 @@ def main():
                 print(f"{Fore.CYAN}Thank you for visiting my app. Exiting the program in 3,2,1...Bye")
                 break
             else:
-                print(f"{Fore.RED}Invalid entry, please choose an option from 1 to 6: ")
+                print(f"{Fore.RED}Invalid entry, please choose an option from 1 to 6: ")  
+                                
         # Except handles KeyBoardInterrupt.
         except KeyboardInterrupt:
             print(f"{Fore.RED}\nProgram interrupted by user, exiting in 3, 2, 1...")

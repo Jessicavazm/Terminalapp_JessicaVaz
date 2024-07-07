@@ -63,7 +63,7 @@ Number 6: User can exit the program
 - Option number 4 (Clear all notes):
     - Function allows user to delete all notes at once. Function 'clear_note' first calls function 'load_notes_json' from file_operation module and assigns value variable 'notes'. 'If not' checks if note app is empty, if it evaluates to true it indicates to user notebook is empty and prompts user to add a note first. 'Return' ends the function since it cannot proceed.
 
-    - Function 'clear' erases all of the content from variable 'notes'. Afterwards it calls function 'save_notes_json' and updates changes to json file. Function 'print' displays a message confirming the process has been successful.
+    - Function 'clear_notes' enters a 'while True' loop if note app contains notes, variable 'i' stores user input which is used to be evaluated with if/elif statements. User is prompt to confirm if they want to proceed with the function and they are advised action cannot be undone. If user confirms, notes are erased using 'clear' function. Function 'save_notes_json' is called to update note app. If user decides to cancel function, return is called and it exits back to main menu. 'Else' statement is called if none of the above evaluates to true and it indicates user input is invalid and the loop continues asking the user again for a confirmation to delete notes.
 
 - Option number 5 (View Notes):
     - Function view_notes first calls function 'load_notes_json' from file_operation module and assigns value variable 'notes'. 'If not' checks if note app is empty, if it evaluates to true, it displays a message indicating the app is empty and it prompts the user to add a note first. 'Return' ends the function since it cannot proceed.
@@ -74,6 +74,16 @@ Number 6: User can exit the program
 
 - Option number 6 (Exit):
     - This option lets user exit the program, it prints a message thanking the user for visiting the app.
+### Main function
+    - Imports Colorama package for printing in colour
+    - Imports 'app_functions' module to use it's functions.
+
+- 'Main' function enter a 'while True' that keeps executing the main menu until user types a valid input or decides to exit program. Print function displays the app's menu with 6 different options. Each option calls a specific function from module 'app_functions'. User input is stored in a variable called 'user_choice' and 'if/elif' statements are then executed. If any of the statement evaluates to true, corresponding function is called. Else statement is called if none of the conditions above is true indicating user input is invalid and prompts the user to type the desired menu option again.
+
+- 'KeyboardInterrupt' displays an error message when user interrupts the flow of the program by typing control + c.
+- 'Exception' catches any other error that might occur in the program process.
+
+- Finally block is always displayed regardless if an error was raised in the try block or not. Message informs any added note will be saved for next time. 
 
 ### File handling functions
 'Save_note_json' and 'load_notes_json' imports built in modules (json and os) from Python library to handle file operations.
@@ -93,5 +103,5 @@ Number 6: User can exit the program
     - JSONDecodeError: Invalid json data
     - IOError: Errors that occur during Input/Output operations.
     - Exception: catches any other errors that might occur.
-    
-
+ 
+![Note-taking app Flowchart](docs/note_taking_app.png)

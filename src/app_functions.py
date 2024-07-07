@@ -122,21 +122,30 @@ def remove_note():
         print(f"{Fore.RED}An unexpected error occurred: {e}")
 
 
-# Function clear_notes allows users to delete all notes at once. Saved notes are stored in variable 'notes'. 'If not' first checks if note app is empty, if it evaluates to true, it prompts the user to add a note first. 'Try' block uses 'clear' function to clear note app, and then it calls 'save_notes_json' to update the file. 'Exception' catches any error that might occur in the process.
+# Function clear_notes allows users to delete all notes at once. Saved notes are stored in variable 'notes'. 'If not' first checks if note app is empty, if it evaluates to true, it prompts the user to add a note first. User input is stored in variable 'i'. Loop 'while True' runs until user confirms they want to go ahead with function or chooses cancel and go back to main menu. 'Else' statement is printed if user types invalid input when asked if they want to proceed. 'Exception' catches any errors that might occur in process execution.
 def clear_notes():
     notes = fo.load_notes_json()
-    
+
     if not notes:
         print(f"{Fore.YELLOW}Your notebook is empty, try adding a note first.")
         return
 
-    try:
-        notes.clear()
-        fo.save_notes_json(notes)
-        print(f"{Fore.GREEN}All notes have been cleared.")
-        
-    except Exception as e:
-        print(f"{Fore.RED}An unexpected error occurred: {e}")
+    while True:
+        i = input(f"{Fore.RED}Are you sure you want to delete all notes? This action cannot be undone. Type 'yes' to confirm or 'no' to cancel: ").strip().lower()
+
+        try:
+            if i == "yes":
+                notes.clear()
+                fo.save_notes_json(notes)
+                print(f"{Fore.GREEN}All notes have been cleared.")
+                return  
+            elif i == "no":
+                print(f"{Fore.GREEN}Exiting to main menu...")
+                return  
+            else:
+                print(f"{Fore.YELLOW}Invalid option, please try again.")
+        except Exception as e:
+            print(f"{Fore.RED}An unexpected error occurred: {e}")
     
 
 # Function 'view_notes 'allows users to view saved notes. 'If not' first checks if note app is empty, if it evaluates to true, it prompts users to first add a note. 'Try' block prints each item in the list of notes, enumerating notes from 1 instead of default value 0. 'Exception' catches any error that might occur in the process.
