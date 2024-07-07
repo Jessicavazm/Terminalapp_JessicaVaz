@@ -9,13 +9,57 @@ Dependencies used to run the application includes:
 - iniconfig==2.0.0
 - packaging==24.1
 
-## How you can use the app, list of features
+## App features, how to use the app
 In this part, I will detail how to use the app, and describe features of the `note-taking` app.
 
 Once the app is open, it prints a welcome message and an important information about notes. Each notes is printed with a index which will be used for editing and removing a note. All notes are printed with current date and time when they were created.
 
 Main menu contains `6 different options` that are printed in different colours to help with visibility and to add styling. Package `colorama` is used through the whole program and it's listed on requirements.txt file.
 While loop is used through program to create a continuously interaction with user. If/else statements directs the flow of the program and Try/Except blocks are used for error handling, allowing the program to run without breaking. Try contains the blocks of codes that an error might occur and except contains codes that handles the errors. I'll explain more in details in functions features.
+
+```
+Terminal application adheres to PEP 8 styling guide.
+Comments are placed on code to indicate functions/ features.
+```
+
+## How to use the app:
+
+```
+Steps to run the application
+
+```
+
+```
+In all menu options you can press 'exit' escape function and go back to main menu.
+
+Add a note:
+Press option 1
+Enter each note in a new line 
+Go to a new line and type 'done' to save notes
+
+Edit a note:
+Press option 2
+Type note index number (index number is on the left side on the note).
+Type new content for note and press enter to save
+
+Remove a note:
+Press option 3
+Type note index number (index number is on the left side on the note).
+
+Remove all notes:
+Press option 4
+Type "yes" to continue with execution or "no" to cancel and go back to main function.
+
+View notes:
+Press option 5
+Saved notes will be displayed along index number, date and time when they were created.
+
+Exit:
+Press option 6
+
+
+```
+
 
 ```
 How colorama is used in the note app:
@@ -57,7 +101,7 @@ Number 6: User can exit the program
 - Option number 3 (Remove note):
     - Function `remove_note` first calls function `load_notes_json` from file_operation module and assigns value variable `notes`. `If not` checks if `notes` is empty, if it evaluates to true it prompts the user to add a note first and `return` ends the function and goes back to main mene otherwise function `view_notes` is called and displays list of notes.
     
-    - Loop `while True` runs until user enters a valid input or decides to exit. User input is stored in variable `i`. If first checks if `i` value equals to `exit`, condition becomes true and program breaks the execution. Variable `i` converts user input to integer and assign values back to variable `i`. If `i` is =>1 and <= items in the notes list , function `pop` removes note using (i - 1) -1 is necessary note items are displayed with index 1 instead of 0. Function `save_notes_json` is called to update changes and afterwards a confirmation message is displayed and function `view_notes` is called so user can see changes made to their note app. Program exits to main function after this. `Else` statement is called if the statement above wasn't called and index number was out of the range, it displays a message indicating to user index number is wrong and to check index which is displayed next to printed notes.
+    - Loop `while True` runs until user enters a valid input or decides to exit. User input is stored in variable `i`. If first checks if `i` value equals to `exit`, condition becomes true and program breaks the execution. Variable `i` converts user input to integer and assign values back to variable `i`. If `i` is =>1 and <= items in the notes list , function `pop` removes note using (i - 1) -1 is necessary note items are displayed with index 1 instead of 0. Function `save_notes_json` is called to update changes and afterwards a confirmation message is displayed and function `view_notes` is called so user can see changes made to their note app, if note app is empty, app prompts user to add a new note. Program exits to main function after this. `Else` statement is called if the statement above wasn't called and index number was out of the range, it displays a message indicating to user index number is wrong and to check index which is displayed next to printed notes.
     
     - `ValueError` catches wrong values passed to function and `exception` catches any possible error that might occur in the execution process.
 

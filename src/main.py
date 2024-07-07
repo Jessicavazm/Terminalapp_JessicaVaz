@@ -10,7 +10,8 @@ init(autoreset=True)
 # Main function displays main menu options and asks for user's input.
 def main():
     
-    # 'While True' runs main menu until user types a valid input or chooses to exit. Fore.Colour add a different colour to each menu option.
+    # 'While True' runs main menu until user types a valid input or chooses to exit. 
+    # Fore.Colour add a different colour to each menu option.
     while True:
         print(f"""
             {Back.YELLOW + Fore.RED}Welcome to your very own note-taking app!!{Style.RESET_ALL}
@@ -23,7 +24,8 @@ def main():
             {Fore.YELLOW}Option 5. View Notes
             {Fore.BLUE}Option 6. Exit
             """)
-        # Each option calls a specific function. If/elif determines the program's flow. User input is stored in 'user_choice' variable and then matched to different functions.
+        # Each option calls a specific function. If/elif determines the program's flow. 
+        # User input is stored in 'user_choice' variable and then matched to different functions.
         try:
             user_choice = input("Please choose a function by entering a number from 1 to 6: ")
         
@@ -54,6 +56,7 @@ def main():
         finally:
             print(f"{Fore.MAGENTA}If you have added any notes, they will be saved for the next time.")
             
-# Checks if this script runs as the main function, if it evaluates to true, it allows to call the function by calling main().
+# Checks if this script runs as the main function.
+# If it evaluates to true, it allows to call the function by calling main().
 if __name__ == "__main__":
     main()

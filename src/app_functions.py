@@ -13,15 +13,20 @@ init(autoreset=True)
 # Initialise the list
 notes = []
 
-# Function 'add_note' allows users to add notes to note app. Saved notes are stored in a variable called 'notes'. Number of notes are stored in variable called 'initial_count' which will determine if there's a new note to save to note app.
+# Function 'add_note' allows users to add notes to note app. 
+# Saved notes are stored in a variable called 'notes'. 
+# Notes length are stored in variable 'initial_count' which will determine if there's a new note to save to note app.
 def add_note():
     notes = fo.load_notes_json()
     initial_count = len(notes)
-    # Try contains a message on how to add a new note or exit to main menu. Variable 'timestamp' stores current date and time.
+    # Try contains a message on how to add a new note or exit to main menu. 
+    # Variable 'timestamp' stores current date and time.
     try:
         print(f"{Fore.GREEN}Enter each note on a new line. Type 'done' to finish or 'exit' to cancel: ")
         timestamp = datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
-        # Input is stored in variable called 'i'. 'If' condition checks if 'i' value is equal to 'done' or 'exit' which ends the loop. 'If not' checks if note is empty and if it evaluates to true it prompts user to type something or type 'exit' to go back to main menu. 'Else' is only executed if the above are not true, it adds notes to note app with timestamp.
+        # Input is stored in variable called 'i'. 'If' condition checks if 'i' value is equal to 'done' or 'exit' which ends the loop. 
+        # 'If not' checks if note is empty and if it evaluates to true it prompts user to type something or type 'exit' to go back to main menu. 
+        # 'Else' is only executed if the above are not true, it adds notes to note app with timestamp.
         while True:
             i = input()
             if i.lower().strip() in ['done', 'exit']:
@@ -31,7 +36,8 @@ def add_note():
                 continue
             else:
                 notes.append((i.strip(), timestamp))
-        # 'If' checks if new notes were added, if so it prints a confirmation message, save and displays notes. 'Else' is executed if no notes were added to app.
+        # 'If' checks if new notes were added, if so it prints a confirmation message, save and displays notes. 
+        # 'Else' is executed if no notes were added to app.
         if len(notes) > initial_count:
             fo.save_notes_json(notes)
             print(f"{Fore.GREEN}Notes have been added successfully.")
@@ -46,10 +52,12 @@ def add_note():
         print(f"{Fore.RED}An unexpected error occurred: {e}")
 
 
-# Function 'edit_notes' allows users to edit a note using an index number. Existing notes are stored in variable 'notes'.
+# Function 'edit_notes' allows users to edit a note using an index number. 
+# Existing notes are stored in variable 'notes'.
 def edit_note():
     notes = fo.load_notes_json()
-    # 'If not' first checks if note app is empty, if so it prompts the user to add a note first. 'Return' ends the function since there's no notes to edit.
+    # 'If not' first checks if note app is empty, if so it prompts the user to add a note first. 
+    # 'Return' ends the function since there's no notes to edit.
     if not notes:
         print(f"{Fore.YELLOW}You don't have any notes to edit, try adding a note first.")
         return
@@ -62,7 +70,12 @@ def edit_note():
         if i.lower() == "exit":
             break
 
-        # User input is converted to int. 'If' checks if input is within the range. If condition evaluates to true, it proceeds to ask user to type new note content which is stored in variable new_note. 'If new_note' updates the note with timestamp and displays a confirmation message. Function 'save_notes_json' updates json file and 'view_notes' displays updated notes to user. 'Else' keeps the loops running and prompts user to type a non empty note. 'ValueError' catches wrong input values and 'Exception' catches any other possible error that might occur.
+        # User input is converted to int. 'If' checks if input is within the range. 
+        # If condition evaluates to true, it proceeds to ask user to type new note content which is stored in variable new_note. 
+        #'If new_note' updates the note with timestamp and displays a confirmation message. 
+        # Function 'save_notes_json' updates json file and 'view_notes' displays updated notes to user. 
+        # 'Else' keeps the loops running and prompts user to type a non empty note. 
+        # 'ValueError' catches wrong input values and 'Exception' catches any other possible error that might occur.
         try:
             timestamp = datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
             i = int(i)
@@ -90,7 +103,10 @@ def edit_note():
     
 
 
-# Function 'remove_note' allows users to delete a specific note using it's index number. First, saved notes are stored in variable called 'notes'. 'If not' condition checks if note app is empty, if it evaluates to true, it prompts the user to add a note first. 'Return' ends the function since note app is empty and it can't proceed to remove a note.
+# Function 'remove_note' allows users to delete a specific note using it's index number. 
+# First, saved notes are stored in variable called 'notes'. 
+# 'If not' condition checks if note app is empty, if it evaluates to true, it prompts the user to add a note. 
+# 'Return' ends the function since note app is empty and it can't proceed to remove a note.
 def remove_note():
     notes = fo.load_notes_json()
     
@@ -98,8 +114,12 @@ def remove_note():
         print(f"{Fore.YELLOW}You don't have any notes to remove, try adding a note first.")
         return
     # Function 'view_notes' displays saved notes to users
+    # Loop 'while True' keeps running until user's input is valid or user decides to exit. 
+    # User input is converted to 'int' and input is within the range, 'pop' function deletes note and prints a confirmation message. 
+    # Function 'save_notes' makes new changes to json file and function view_notes displays updated note list.
+    # 'Else' statement is executed if user input is out of the valid range. 'ValueErrors' catches wrong input values.
+    # 'Exception' catches any other possible error that might occur in the process.
     view_notes()
-    # Loop 'while True' keeps running until user's input is valid or user decides to exit. User input is converted to 'int' and input is within the range, 'pop' function deletes note and prints a confirmation message. Function 'save_notes' makes new changes to json file and function view_notes displays updated note list. 'Else' statement is executed if user input is out of the valid range. 'ValueErrors' catches wrong input values and 'Exception' catches any other possible error that might occur in the process.
     try:
         while True:
             i = input(f"{Fore.GREEN}Please, type the note index you would like to remove or type 'exit' to cancel: ").strip()
@@ -122,7 +142,11 @@ def remove_note():
         print(f"{Fore.RED}An unexpected error occurred: {e}")
 
 
-# Function clear_notes allows users to delete all notes at once. Saved notes are stored in variable 'notes'. 'If not' first checks if note app is empty, if it evaluates to true, it prompts the user to add a note first. User input is stored in variable 'i'. Loop 'while True' runs until user confirms they want to go ahead with function or chooses cancel and go back to main menu. 'Else' statement is printed if user types invalid input when asked if they want to proceed. 'Exception' catches any errors that might occur in process execution.
+# Function clear_notes allows users to delete all notes at once. Saved notes are stored in variable 'notes'. 
+# 'If not' first checks if note app is empty, if it evaluates to true, it prompts the user to add a note first. 
+# User input is stored in variable 'i'. Loop 'while True' runs until user confirms they want to go ahead or cancel. 
+# 'Else' statement is printed if user types invalid input when asked if they want to proceed. 
+# 'Exception' catches any errors that might occur in process execution.
 def clear_notes():
     notes = fo.load_notes_json()
 
@@ -148,7 +172,10 @@ def clear_notes():
             print(f"{Fore.RED}An unexpected error occurred: {e}")
     
 
-# Function 'view_notes 'allows users to view saved notes. 'If not' first checks if note app is empty, if it evaluates to true, it prompts users to first add a note. 'Try' block prints each item in the list of notes, enumerating notes from 1 instead of default value 0. 'Exception' catches any error that might occur in the process.
+# Function 'view_notes 'allows users to view saved notes. 
+# 'If not' first checks if note app is empty, if it evaluates to true, it prompts users to first add a note. 
+# 'Try' block prints each item in the list of notes, enumerating notes from 1 instead of default value 0. 
+# 'Exception' catches any error that might occur in the process.
 def view_notes():
     notes = fo.load_notes_json()
     
