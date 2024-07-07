@@ -112,7 +112,7 @@ Number 6: User can exit the program
 # Pseudo-code
 App that stores user notes along day/time when notes were created. App allows users to add multiple notes at once, edit, remove and view notes.
 
-`Main function():`
+`def Main function():`
 
     while True:
         Print(Display welcoming message and menu options)
@@ -145,12 +145,11 @@ App that stores user notes along day/time when notes were created. App allows us
         finally:
             print(Message that informs users all added notes will be saved to next time)
 
-## App_functions
 
-`Add function()`
+`def Add function():`
 
-notes = load_notes_json()
-initial_count = length of notes
+    load notes
+    initial_count = length of notes
 
     try:
         print(Instructions for adding a note or exit to go back to main menu)
@@ -179,10 +178,11 @@ initial_count = length of notes
     except Exception as e:
         print (Error message {e})
 
-End Function
 
-`Edit function():`
-    notes = load_notes_json()
+
+`def Edit function():`
+    
+    load notes
 
     if not notes:
         print (Instruct user to add a note first)
@@ -218,10 +218,11 @@ End Function
         except Exception as e:
             print(Error message {e})
 
-End Function
 
-def remove_note():
-    notes = fo.load_notes_json()
+
+`def Remove notes Function():`
+
+    loads notes
     
     if not notes:
         print(Indicates users note app is empty, instruct user to add a note)
@@ -239,7 +240,7 @@ def remove_note():
                 if i >= 1 and i <= len(notes):
                     removes note
                     save notes to json file
-                    print(f"{Fore.GREEN}Note has been successfully removed.")
+                    print(Confirmation message)
                     view_notes()
                     break
                 else:
@@ -250,10 +251,10 @@ def remove_note():
     except Exception as e:
         print(Error message {e}")
 
-End function
 
-def clear_notes():
-    notes = fo.load_notes_json()
+`def Clear notes Function():`
+
+    load notes
 
     if not notes:
         print(Indicates note app is empty and prompts user to add a note)
@@ -276,11 +277,10 @@ def clear_notes():
         except Exception as e:
             print(Error message {e}")
 
-End function
 
 
-def view_notes():
-    notes = fo.load_notes_json()
+`def View notes Function():`
+    loads notes
     
     if not notes:
         print(Indicates note app is empty, it prompts user to first add a note)
@@ -292,10 +292,9 @@ def view_notes():
     except Exception as e:
             print(Error message{e}")
 
-End Function
 
 
-def save_notes_json():
+`def Save notes Function:`
     
     try:
         with open(filename, "w) as file:
@@ -311,16 +310,15 @@ def save_notes_json():
     except Exception as e:
         print(Message error {e}")
 
-End function
 
 
-de load_notes_json:
+`def Load notes Function ():`
     
     if os.path.exists(filename):
         try:
             with open(filename, "r") as file:
                 notes = json.load(file)
-                return notes 
+                return 
         
         except FileNotFoundError as fe:
             print(Error message: {fe})
@@ -336,6 +334,5 @@ de load_notes_json:
     else:
         print(Indicates file does not exist)
 
-End function
 
 ## Trello Board
