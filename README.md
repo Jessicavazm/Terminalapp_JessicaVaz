@@ -280,8 +280,8 @@ App that stores user notes along day/time when notes were created. App allows us
 
 
 `def View notes Function():`
-    loads notes
     
+    loads notes
     if not notes:
         print(Indicates note app is empty, it prompts user to first add a note)
         return
@@ -336,3 +336,11 @@ App that stores user notes along day/time when notes were created. App allows us
 
 
 ## Trello Board
+[Access my project in GitHub](https://trello.com/b/oCKtnWGF)
+
+
+![Trello Board 1](/docs/Trello1.png)
+![Trello Board 2](/docs/Trello2.png)
+![Trello Board 3](/docs/Trello3.png)
+![Trello Board 4](/docs/Trello4.png)
+![Trello Board 5](/docs/Trello5.png)
