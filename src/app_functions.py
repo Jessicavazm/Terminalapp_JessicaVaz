@@ -66,7 +66,7 @@ def edit_note():
         try:
             timestamp = datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
             i = int(i)
-            if 1 <= i <= len(notes):
+            if i >= 1 and i <= len(notes):
                 new_note = input(f"{Fore.GREEN}Type your new note and press enter to save: ").strip()
                 if new_note:
                     notes[i - 1] = (new_note.strip(), timestamp)
@@ -107,7 +107,7 @@ def remove_note():
                 break
             try:
                 i = int(i)
-                if 1 <= i <= len(notes):
+                if i >= 1 and i <= len(notes):
                     notes.pop(i - 1)
                     fo.save_notes_json(notes)
                     print(f"{Fore.GREEN}Note has been successfully removed.")
@@ -140,7 +140,7 @@ def clear_notes():
                 print(f"{Fore.GREEN}All notes have been cleared.")
                 return  
             elif i == "no":
-                print(f"{Fore.GREEN}Exiting to main menu...")
+                print(f"{Fore.GREEN}No action has been done. Exiting to main menu...")
                 return  
             else:
                 print(f"{Fore.YELLOW}Invalid option, please try again.")
