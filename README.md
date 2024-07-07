@@ -28,6 +28,8 @@ Comments are placed on code to indicate functions/ features.
 Steps to run the application
 
 ```
+ Go to the source file "JessicaVazMartins_T1A3/src" and then run by writing "./run.sh" in the terminal. It should run the application in the terminal.
+ Dependencies are automatically installed.
 
 ```
 In all menu options you can press 'exit' escape function and go back to main menu.
