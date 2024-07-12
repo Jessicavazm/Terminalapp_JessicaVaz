@@ -13,6 +13,7 @@ init(autoreset=True)
 # Initialise the list
 notes = []
 
+
 # Function 'add_note' allows users to add notes to note app. 
 # Saved notes are stored in a variable called 'notes'. 
 # Notes length are stored in variable 'initial_count' which will determine if there's a new note to save to note app.
@@ -85,7 +86,6 @@ def edit_note():
                     notes[i - 1] = (new_note.strip(), timestamp)
                     fo.save_notes_json(notes)
                     print(f"{Fore.GREEN}Note has been successfully edited.")
-                    fo.save_notes_json(notes)
                     view_notes()
                     break
 

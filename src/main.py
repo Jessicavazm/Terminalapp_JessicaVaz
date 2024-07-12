@@ -7,6 +7,7 @@ import app_functions as af
 # Initializes and automatically resets text colours.
 init(autoreset=True)
 
+
 # Main function displays main menu options and asks for user's input.
 def main():
     
