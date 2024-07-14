@@ -25,51 +25,51 @@ Comments are placed on code to indicate functions/ features.
 ## How to use the app:
 
 ```
- Steps to run the application:
+Steps to run the application:
 
- Go to the source file "JessicaVazMartins_T1A3/src" and then run by writing "./run.sh" in the terminal. It should run the application in the terminal.
- Dependencies are automatically installed.
-
+Go to the source file "JessicaVazMartins_T1A3/src" and then run by writing "./run.sh" in the terminal. 
+Dependencies are automatically installed.
 ```
-In all menu options you can press 'exit' escape function and go back to main menu.
+In menu options you can type 'exit' to escape function and go back to main menu.
 
-Add a note:
+- Add a note:
 Press option 1
 Enter each note in a new line 
 Go to a new line and type 'done' to save notes
 
-Edit a note:
+- Edit a note:
 Press option 2
 Type note index number (index number is on the left side on the note).
 Type new content for note and press enter to save
 
-Remove a note:
+- Remove a note:
 Press option 3
 Type note index number (index number is on the left side on the note).
 
-Remove all notes:
+- Remove all notes:
 Press option 4
 Type "yes" to continue with execution or "no" to cancel and go back to main function.
 
-View notes:
+- View notes:
 Press option 5
 Saved notes will be displayed along index number, date and time when they were created.
 
-Exit:
+- Exit:
 Press option 6
 
 
-```
+### How colorama is used in the note app:
 
+Green colour: 
+Used when asking for user input and to print confirmation messages when a function was executed successfully.
 
-```
-How colorama is used in the note app:
+Yellow colour: 
+Used for printing messages that indicates function can't be executed and prompts user to do something for function to work.
 
-Green colour: Used when asking for user input and to print confirmation messages when a function was executed successfully.
-Yellow colour: Used for printing messages that indicates function can't be executed and prompts user to do something for function to work.
-Red colour: Used to print Errors messages that program came across while running.
-```
+Red colour: 
+Used to print Errors messages that program came across while running.
 
+### Main Menu options
 ```
 Number 1: User can add a note
 Number 2: User can edit a note
