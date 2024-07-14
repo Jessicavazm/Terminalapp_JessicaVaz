@@ -14,7 +14,7 @@ In this part, I will detail how to use the app, and describe features of the `no
 
 Once the app is open, it prints a welcome message and an important information about notes. Each notes is printed with a index which will be used for editing and removing a note. All notes are printed with current date and time when they were created.
 
-Main menu contains `6 different options` that are printed in different colours to help with visibility and to add styling. Package `colorama` is used through the whole program and it's listed on requirements.txt file.
+**Main menu** contains `6 different options` that are printed in different colours to help with visibility and to add styling. Package `colorama` is used through the whole program and it's listed on requirements.txt file.
 While loop is used through program to create a continuously interaction with user. If/else statements directs the flow of the program and Try/Except blocks are used for error handling, allowing the program to run without breaking. Try contains the blocks of codes that an error might occur and except contains codes that handles the errors. I'll explain more in details in functions features.
 
 ```
@@ -30,43 +30,44 @@ Steps to run the application:
 Go to the source file "JessicaVazMartins_T1A3/src" and then run by writing "./run.sh" in the terminal. 
 Dependencies are automatically installed.
 ```
-In menu options you can type 'exit' to escape function and go back to main menu.
 
-- Add a note:
-Press option 1
-Enter each note in a new line 
-Go to a new line and type 'done' to save notes
+__In menu options you can type 'exit' to escape function and go back to main menu.__
 
-- Edit a note:
-Press option 2
-Type note index number (index number is on the left side on the note).
-Type new content for note and press enter to save
+- __Add a note__:  
+Press option 1  
+Enter each note in a new line   
+Go to a new line and type 'done' to save notes.<br><br>
 
-- Remove a note:
-Press option 3
-Type note index number (index number is on the left side on the note).
+- __Edit a note__:  
+Press option 2    
+Type note index number (index number is on the left side on the note)    
+Type new content for note and press enter to save.<br><br>
 
-- Remove all notes:
-Press option 4
-Type "yes" to continue with execution or "no" to cancel and go back to main function.
+- __Remove a note__:  
+Press option 3    
+Type note index number (index number is on the left side on the note).<br><br>
 
-- View notes:
-Press option 5
-Saved notes will be displayed along index number, date and time when they were created.
+- __Remove all notes__:  
+Press option 4  
+Type "yes" to continue with execution or "no" to cancel and go back to main function.<br><br>
 
-- Exit:
-Press option 6
+- __View notes__:  
+Press option 5  
+Saved notes will be displayed along index number, date and time when they were created.<br><br> 
+
+- __Exit__:  
+Press option 6.
 
 
 ### How colorama is used in the note app:
 
-Green colour: 
+**Green colour**:  
 Used when asking for user input and to print confirmation messages when a function was executed successfully.
 
-Yellow colour: 
+**Yellow colour**:  
 Used for printing messages that indicates function can't be executed and prompts user to do something for function to work.
 
-Red colour: 
+**Red colour**:   
 Used to print Errors messages that program came across while running.
 
 ### Main Menu options
@@ -122,8 +123,8 @@ Number 6: User can exit the program
     - This option lets user end the program, it prints a message thanking the user for visiting the app.
 
 ### Main function
-    - Imports Colorama package for printing in colour
-    - Imports app_functions module to use it's functions.
+    Imports Colorama package for printing in colour
+    Imports app_functions module to use it's functions.
 
 - `Main` function enter a `while True` that keeps executing the main menu until user types a valid input or decides to exit program. Print function displays the app's menu with 6 different options. Each option calls a specific function from module `app_functions`. User input is stored in a variable called `user_choice` and `if/elif` statements are then executed. If any of the statement evaluates to true, corresponding function is called. Else statement is called if none of the conditions above is true indicating user input is invalid and prompts the user to type the desired menu option again.
 
@@ -133,7 +134,8 @@ Number 6: User can exit the program
 - `Finally block` is always displayed regardless if an error was raised in the try block or not. Message informs any added note will be saved for next time. 
 
 ### File handling functions
-`Save_note_json` and `load_notes_json` imports built in modules `json and os` from Python library to handle file operations.
+
+    Save_note_json` and `load_notes_json` imports built in modules `json and os` from Python library to handle file operations.
 
 - Function `save_note_json` opens the file in `w` (write mode) and save all changes to file using function `dump`.json'. `With` statements makes sure the file is close after changes are done and it prints a message confirming changes to json file. 
 
@@ -149,12 +151,13 @@ Number 6: User can exit the program
     - FileNotFoundError: program couldn't find the json file.
     - JSONDecodeError: Invalid json data
     - IOError: Errors that occur during Input/Output operations.
-    - Exception: catches any other errors that might occur.
+    - Exception: catches any other errors that might occur.<br><br>
  
-![Note-taking app Flowchart](docs/note_taking_app.png)
+ ## Flowchart 
+![Note-taking app Flowchart](docs/note_taking_app.png) <br><br>
 
 
-# Pseudo-code
+## Pseudo-code
 App that stores user notes along day/time when notes were created. App allows users to add multiple notes at once, edit, remove and view notes.
 
 `def Main function():`
@@ -381,7 +384,7 @@ App that stores user notes along day/time when notes were created. App allows us
 
 
 ## Trello Board
-[Access my project in GitHub](https://trello.com/b/oCKtnWGF)
+[Access my Trello Board](https://trello.com/b/oCKtnWGF)
 
 
 ![Trello Board 1](/docs/Trello1.png)
